@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import { ZodSchema } from "zod";
-import { ParsedRequest } from "../types";
+import { Request, Response, NextFunction } from "express"
+import { ZodSchema } from "zod"
+import { ParsedRequest } from "../types"
 
 export function parsed<Schema extends ZodSchema>(
   handler: (
@@ -10,5 +10,5 @@ export function parsed<Schema extends ZodSchema>(
   ) => void
 ) {
   return (req: Request, res: Response, next: NextFunction) =>
-    handler(req as ParsedRequest<Schema>, res, next);
+    handler(req as ParsedRequest<Schema>, res, next)
 }

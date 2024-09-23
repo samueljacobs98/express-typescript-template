@@ -9,7 +9,7 @@ export function errorHandler(
   req: Request,
   res: Response,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  next: NextFunction,
+  next: NextFunction
 ) {
   logger.error(err)
 
@@ -17,14 +17,14 @@ export function errorHandler(
     return res.status(StatusCodes.BAD_REQUEST).json({
       status: "error",
       message: "Validation Error",
-      details: err.errors,
+      details: err.errors
     })
   }
 
   if (err.name === "UnauthorizedError") {
     return res.status(StatusCodes.UNAUTHORIZED).json({
       status: "error",
-      message: "Invalid token",
+      message: "Invalid token"
     })
   }
 
@@ -32,6 +32,6 @@ export function errorHandler(
   return res.status(statusCode).json({
     status: "error",
     message: err.message || getReasonPhrase(statusCode),
-    details: err.details || null,
+    details: err.details || null
   })
 }
