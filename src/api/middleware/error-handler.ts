@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express"
+import { NextFunction, Request, Response } from "express"
 import { StatusCodes, getReasonPhrase } from "http-status-codes"
 import { ZodError } from "zod"
 import logger from "../logger"

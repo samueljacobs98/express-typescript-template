@@ -1,5 +1,5 @@
 import { Request } from "express"
-import { z, ZodSchema } from "zod"
+import { ZodSchema, z } from "zod"
 
 export type ParsedRequest<Schema extends ZodSchema> = Request & {
   parsedData: z.infer<Schema>

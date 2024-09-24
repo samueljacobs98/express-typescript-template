@@ -1,9 +1,9 @@
 import { Response } from "express"
 import { StatusCodes } from "http-status-codes"
-import { createUserSchema } from "../schemas"
 import { ParsedRequest } from "../../api/types"
+import { createUserSchema } from "../schemas"
 
-export async function createUserHandler(
+export function createUser(
   req: ParsedRequest<typeof createUserSchema>,
   res: Response
 ) {

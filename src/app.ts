@@ -1,11 +1,11 @@
-import routes from "./api/routes"
+import express, { Application } from "express"
 import logger from "./api/logger"
 import {
   errorHandler,
   loggerMiddleware,
   requestIdMiddleware
 } from "./api/middleware"
-import express, { Application } from "express"
+import routes from "./api/routes"
 
 const app: Application = express()
 const PORT = process.env.PORT || 3000

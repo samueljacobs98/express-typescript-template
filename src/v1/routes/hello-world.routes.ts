@@ -1,8 +1,9 @@
 import { Router } from "express"
-import { helloWorldHandler } from "../controllers"
+import { handle } from "../../api/utils"
+import { helloWorld } from "../controllers"
 
 const router = Router()
 
-router.get("/", helloWorldHandler)
+router.get("/", handle(helloWorld))
 
 export default router
