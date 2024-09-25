@@ -1,5 +1,6 @@
 import express, { Application } from "express"
 import "express-async-errors"
+import config from "./api/config"
 import logger from "./api/logger"
 import {
   errorHandler,
@@ -9,9 +10,9 @@ import {
 import routes from "./api/routes"
 
 const app: Application = express()
-const PORT = process.env.PORT || 3000
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.use(requestIdMiddleware)
 app.use(loggerMiddleware)
@@ -20,6 +21,6 @@ app.use("/api", routes)
 
 app.use(errorHandler)
 
-app.listen(PORT, () => {
-  logger.info(`Server is running on port ${PORT}`)
+app.listen(config.app.port, () => {
+  logger.info(`Server is running on port ${config.app.port}`)
 })

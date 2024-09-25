@@ -9,9 +9,8 @@ export const validate =
     const parsedData = schema.safeParse(req)
     if (!parsedData.success) {
       next(new ValidationError(parsedData.error.errors))
+    } else {
+      ;(req as ParsedRequest<Schema>).parsedData = parsedData.data
+      next()
     }
-
-    ;(req as ParsedRequest<Schema>).parsedData = parsedData
-
-    next()
   }

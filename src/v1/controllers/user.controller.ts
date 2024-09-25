@@ -7,8 +7,8 @@ export async function createUser(
   req: ParsedRequest<typeof createUserSchema>,
   res: Response
 ) {
-  const logger = res.locals.logger
-  logger.info("User creation request received", req.parsedData)
+  const logger = req.logger
+  logger.info("User creation request received from ", req.parsedData.name)
 
   // Simulate user creation logic
   const newUser = {
