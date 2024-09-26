@@ -1,3 +1,4 @@
+import cors from "cors"
 import express, { Application } from "express"
 import "express-async-errors"
 import config from "./api/config"
@@ -11,6 +12,7 @@ import routes from "./api/routes"
 
 const app: Application = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
