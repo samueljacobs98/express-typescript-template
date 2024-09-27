@@ -10,7 +10,7 @@ type LogLevel = "error" | "warn" | "info" | "http" | "verbose" | "debug"
 const environmentLevelMap: Record<typeof config.app.env, LogLevel> = {
   local: "debug",
   development: "debug",
-  "non-production": "info",
+  staging: "info",
   production: "error"
 }
 

@@ -2,9 +2,7 @@ import { z } from "zod"
 
 const schema = z.object({
   port: z.coerce.number().default(3000),
-  env: z
-    .enum(["local", "development", "non-production", "production"])
-    .default("local")
+  env: z.enum(["local", "development", "staging", "production"])
 })
 
 const config = schema.parse({

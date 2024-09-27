@@ -1,6 +1,8 @@
+import dotenvx from "@dotenvx/dotenvx"
 import cors from "cors"
 import express, { Application } from "express"
 import "express-async-errors"
+import path from "path"
 import config from "./api/config"
 import logger from "./api/logger"
 import {
@@ -9,6 +11,10 @@ import {
   requestIdMiddleware
 } from "./api/middleware"
 import routes from "./api/routes"
+
+dotenvx.config({
+  path: path.resolve(__dirname, "..", `.env.${process.env.NODE_ENV}`)
+})
 
 const app: Application = express()
 

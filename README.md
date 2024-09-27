@@ -31,6 +31,7 @@ This is a template for an Express API. It uses the following core technologies, 
 - [winston](https://www.npmjs.com/package/winston)
 - [express-winston](https://www.npmjs.com/package/express-winston)
 - [winston-daily-rotate-file](https://www.npmjs.com/package/winston-daily-rotate-file)
+- [application insights](https://www.npmjs.com/package/applicationinsights)
 
 ### Authentication and Authorization
 
@@ -45,40 +46,100 @@ This is a template for an Express API. It uses the following core technologies, 
 
 1. Clone the repository
 
-```bash
-    git clone https://github.com/samueljacobs98/express-typescript-template.git
-```
+   ```bash
+   git clone https://github.com/samueljacobs98/express-typescript-template.git
+   ```
 
 2. Install dependencies:
 
-```bash
-    npm install
-```
+   ```bash
+   npm install
+   ```
 
-3. Create a `.env` file in the root directory and add the following environment variables:
+3. Install Docker:
 
-```bash
-    PORT=3000
-    NODE_ENV=development
-    JWT_SECRET=secret
-```
+   Follow the instructions at [Get Docker](https://docs.docker.com/get-docker/)
 
-4. Start the server:
+4. Set up environment variables:
 
-```bash
-    npm run dev
-```
+   Create the necessary `.env` files in the root directory. You can create the following files based on your environment:
 
-5. Alternatively, you can build the project and run the server:
+   - `.env.local`
+   - `.env.development`
+   - `.env.staging`
+   - `.env.production`
 
-```bash
-    npm run build
-    npm start
-```
+   Each `.env` file should contain the required environment variables for the application. Here is an example of what the `.env` file might look like:
 
-6. Or, use Docker:
+   ```env
+   PORT=3000
+   DATABASE_URL=your_database_url
+   ```
 
-```bash
-    docker-compose build
-    docker-compose up
-```
+5. Add your app name to the Makefile and package.json:
+
+   - In the Makefile, add your app name to the `APP_NAME` variable:
+
+     ```makefile
+     APP_NAME=your_app_name
+     ```
+
+   - In the `package.json` file, add your app name to the `name` field:
+
+     ```json
+     {
+       "name": "your_app_name",
+       ...
+     }
+     ```
+
+6. Start the application:
+
+   You can start the application in different environments using the Makefile commands:
+
+   - For local development (with hot reloading):
+
+     ```bash
+     make local
+     ```
+
+     > **Note**: The `local` environment will automatically reload the server when changes are made to the source code. However, changes to the `.env.local` file will not be picked up automatically. You will need to restart the server to apply changes to the `.env.local` file.
+
+   - For development environment:
+
+     ```bash
+     make development
+     ```
+
+   - For staging environment:
+
+     ```bash
+     make staging
+     ```
+
+   - For production environment:
+
+     ```bash
+     make production
+     ```
+
+7. View logs:
+
+   To view the logs for a specific environment, use the following command:
+
+   ```bash
+   make logs env=your_environment
+   ```
+
+   Replace `your_environment` with `local`, `development`, `staging`, or `production`. If you don't specify an environment, the logs for the `local` environment will be displayed.
+
+8. Stop the application:
+
+   To stop the application for a specific environment, use the following command:
+
+   ```bash
+   make stop env=your_environment
+   ```
+
+   Replace `your_environment` with `local`, `development`, `staging`, or `production`.
+   If you don't specify an environment, the application for the `local` environment will be stopped.
