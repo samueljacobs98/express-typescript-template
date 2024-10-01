@@ -1,6 +1,6 @@
 import { Router } from "express"
-import userRouter from "./user.routes"
 import helloWorldRouter from "./hello-world.routes"
+import userRouter from "./user.routes"
 
 const router = Router()
 

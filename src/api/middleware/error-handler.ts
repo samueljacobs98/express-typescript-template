@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express"
+import { NextFunction, Request, Response } from "express"
 import { StatusCodes, getReasonPhrase } from "http-status-codes"
-import { ZodError } from "zod"
+import { BaseError } from "../errors"
 import logger from "../logger"
 
 export function errorHandler(
@@ -13,18 +13,11 @@ export function errorHandler(
 ) {
   logger.error(err)
 
-  if (err instanceof ZodError) {
-    return res.status(StatusCodes.BAD_REQUEST).json({
+  if (err instanceof BaseError) {
+    return res.status(err.statusCode).json({
       status: "error",
-      message: "Validation Error",
-      details: err.errors
-    })
-  }
-
-  if (err.name === "UnauthorizedError") {
-    return res.status(StatusCodes.UNAUTHORIZED).json({
-      status: "error",
-      message: "Invalid token"
+      message: err.message,
+      details: err.details ?? null
     })
   }
 

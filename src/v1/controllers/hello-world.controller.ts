@@ -1,9 +1,9 @@
-import { Request, Response } from "express"
+import { Response } from "express"
 import { StatusCodes } from "http-status-codes"
+import { ParsedRequest } from "../../api/types"
 
-export const helloWorldHandler = async (req: Request, res: Response) => {
-  const logger = res.locals.logger
-
+export function helloWorld(req: ParsedRequest, res: Response) {
+  const logger = req.logger
   logger.info("Hello world request received")
 
   res.status(StatusCodes.OK).json({
