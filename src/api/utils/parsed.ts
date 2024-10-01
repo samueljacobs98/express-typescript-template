@@ -9,6 +9,7 @@ export function parsed<Schema extends ZodSchema>(
     next: NextFunction
   ) => void | Promise<void>
 ) {
-  return (req: Request, res: Response, next: NextFunction) =>
-    handler(req as ParsedRequest<Schema>, res, next)
+  return function (req: Request, res: Response, next: NextFunction) {
+    return handler(req as ParsedRequest<Schema>, res, next)
+  }
 }

@@ -15,7 +15,7 @@ export NODE_ENV="$ENVIRONMENT"
 cd "$(dirname "$0")/.."
 
 if [ "$ENVIRONMENT" = "local" ]; then
-    docker_compose_file="docker-compose.${ENVIRONMENT}.yml"
+    docker_compose_file="docker-compose.local.yml"
 else
     docker_compose_file="docker-compose.yml"
 fi
